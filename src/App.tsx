@@ -1,12 +1,12 @@
 import React from 'react';
-
-import { Header, Dashboard } from 'components';
+import { Header, Dashboard, TransactionsTable } from 'components';
 
 function App() {
   return (
     <>
       <Header />
       <Dashboard />
+      <TransactionsTable />
     </>
   );
 }
