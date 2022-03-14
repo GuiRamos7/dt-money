@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Modal from 'react-modal';
 
 import { createServer } from 'miragejs';
 
 import App from './App';
 import { GlobalStyle } from './styles/global';
+
+Modal.setAppElement('#root');
 
 createServer({
   routes() {
