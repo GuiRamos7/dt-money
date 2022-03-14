@@ -16,7 +16,7 @@ const TransactionsTable = () => {
 
   useEffect(() => {
     api.get('transactions').then(({ data }) => {
-      setTransactions(data);
+      setTransactions(data.transactions);
     });
   }, []);
 

@@ -4,6 +4,7 @@ import * as S from './styles';
 import closeImg from 'assets/close.svg';
 import incomeImg from 'assets/income.svg';
 import outcomeImg from 'assets/outcome.svg';
+import { api } from 'services/api';
 
 interface INewTransactionsModalProps {
   isOpen: boolean;
@@ -25,7 +26,8 @@ const NewTransactionsModal = ({
   const { register, handleSubmit } = useForm<IFormInput>();
 
   const handleCreateNewTransaction: SubmitHandler<IFormInput> = (data) => {
-    console.log({ ...data, type });
+    api.post('/transactions', { ...data, type });
+    onRequestClose();
   };
 
   return (
