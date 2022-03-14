@@ -2,12 +2,16 @@ import logoImg from 'assets/logo.svg';
 
 import * as S from './styles';
 
-const Header = () => {
+interface IHeader {
+  handleOpenNewTransactionModal: () => void;
+}
+
+const Header = ({ handleOpenNewTransactionModal }: IHeader) => {
   return (
     <S.Container>
       <S.Content>
         <img src={logoImg} alt='dt money logo' />
-        <button>New transaction</button>
+        <button onClick={handleOpenNewTransactionModal}>New transaction</button>
       </S.Content>
     </S.Container>
   );
