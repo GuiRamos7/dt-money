@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { transparentize } from 'polished';
 import ReactModal from 'react-modal';
 
 export const Modal = styled(ReactModal)`
@@ -76,31 +77,44 @@ export const TransactionTypeContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
+`;
 
-  button {
-    height: 4rem;
-    border: 1px solid #d7d7d7;
-    border-radius: 0.25rem;
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: border-color 0.2s ease-in-out;
+interface IButton {
+  isActive: boolean;
+  activeColor: 'green' | 'red';
+}
 
-    &:hover {
-      border-color: #aaa;
-    }
+const colors = {
+  green: '#33cc95',
+  red: '#e52e4d',
+};
 
-    img {
-      width: 20px;
-      height: 20px;
-    }
+export const ButtonType = styled.button<IButton>`
+  height: 4rem;
+  border: 1px solid #d7d7d7;
+  border-radius: 0.25rem;
+  background-color: ${(props) =>
+    props.isActive
+      ? transparentize(0.9, colors[props.activeColor])
+      : 'transparent'};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s ease-in-out;
 
-    span {
-      display: inline-block;
-      margin-left: 1rem;
-      font-size: 1rem;
-      color: var(--text-title);
-    }
+  &:hover {
+    border-color: #aaa;
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+
+  span {
+    display: inline-block;
+    margin-left: 1rem;
+    font-size: 1rem;
+    color: var(--text-title);
   }
 `;

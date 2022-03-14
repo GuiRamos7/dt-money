@@ -2,8 +2,9 @@ import * as S from './styles';
 import closeImg from 'assets/close.svg';
 import incomeImg from 'assets/income.svg';
 import outcomeImg from 'assets/outcome.svg';
+import { useState } from 'react';
 
-interface INewTransactionsModal {
+interface INewTransactionsModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
 }
@@ -11,7 +12,9 @@ interface INewTransactionsModal {
 const NewTransactionsModal = ({
   onRequestClose,
   isOpen,
-}: INewTransactionsModal) => {
+}: INewTransactionsModalProps) => {
+  const [type, setType] = useState('deposit');
+
   return (
     <S.Modal
       overlayClassName='react-modal-overlay'
@@ -27,18 +30,24 @@ const NewTransactionsModal = ({
         <input placeholder='Name' />
         <input placeholder='Value' type='number' />
         <S.TransactionTypeContainer>
-          <button type='button'>
-            <img src={incomeImg} alt='Received icon' onClick={onRequestClose} />
+          <S.ButtonType
+            activeColor='green'
+            isActive={type === 'deposit'}
+            type='button'
+            onClick={() => setType('deposit')}
+          >
+            <img src={incomeImg} alt='Received icon' />
             <span>Received</span>
-          </button>
-          <button type='button'>
-            <img
-              src={outcomeImg}
-              alt='Withdraw icon'
-              onClick={onRequestClose}
-            />
+          </S.ButtonType>
+          <S.ButtonType
+            activeColor='red'
+            isActive={type === 'withdraw'}
+            type='button'
+            onClick={() => setType('withdraw')}
+          >
+            <img src={outcomeImg} alt='Withdraw icon' />
             <span>Withdraw</span>
-          </button>
+          </S.ButtonType>
         </S.TransactionTypeContainer>
         <input placeholder='category' />
         <button type='submit'>Register</button>
