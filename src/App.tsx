@@ -1,6 +1,10 @@
 import { useState } from 'react';
-import Modal from 'react-modal';
-import { Header, Dashboard, TransactionsTable } from 'components';
+import {
+  Header,
+  Dashboard,
+  TransactionsTable,
+  NewTransactionsModal,
+} from 'components';
 
 function App() {
   const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] =
@@ -18,12 +22,10 @@ function App() {
     <>
       <Header handleOpenNewTransactionModal={handleOpenNewTransactionModal} />
       <Dashboard />
-      <Modal
-        onRequestClose={handleCloseNewTransactionModal}
+      <NewTransactionsModal
         isOpen={isNewTransactionModalOpen}
-      >
-        Cadastrar
-      </Modal>
+        onRequestClose={handleCloseNewTransactionModal}
+      />
       <TransactionsTable />
     </>
   );
