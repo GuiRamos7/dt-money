@@ -8,7 +8,7 @@ interface ITransaction {
   amount: number;
   type: string;
   category: string;
-  createdAt: Date;
+  createdAt: string;
 }
 
 const TransactionsTable = () => {
@@ -36,12 +36,18 @@ const TransactionsTable = () => {
             <tr key={transaction.id}>
               <td>{transaction.title}</td>
               <td className={transaction.type}>
-                {transaction.type === 'withdraw'
-                  ? `- R$ ${transaction.amount}`
-                  : `R$ ${transaction.amount}`}
+                {new Intl.NumberFormat('pt-br', {
+                  style: 'currency',
+                  currency: 'USD',
+                }).format(transaction.amount)}
               </td>
               <td>{transaction.category}</td>
-              <td>{transaction.createdAt}</td>
+              <td>
+                {' '}
+                {new Intl.DateTimeFormat('pt-br').format(
+                  new Date(transaction.createdAt)
+                )}
+              </td>
             </tr>
           ))}
         </tbody>

@@ -28,7 +28,7 @@ createServer({
         {
           id: 2,
           title: 'Ghost of Tsushima',
-          amount: 350,
+          amount: 70,
           type: 'withdraw',
           category: 'Games',
           createdAt: new Date('2022-01-15'),
