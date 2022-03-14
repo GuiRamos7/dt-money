@@ -1,12 +1,19 @@
+import React, { useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import * as S from './styles';
 import closeImg from 'assets/close.svg';
 import incomeImg from 'assets/income.svg';
 import outcomeImg from 'assets/outcome.svg';
-import { useState } from 'react';
 
 interface INewTransactionsModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
+}
+
+interface IFormInput {
+  name: string;
+  value: number;
+  category: string;
 }
 
 const NewTransactionsModal = ({
@@ -14,6 +21,12 @@ const NewTransactionsModal = ({
   isOpen,
 }: INewTransactionsModalProps) => {
   const [type, setType] = useState('deposit');
+
+  const { register, handleSubmit } = useForm<IFormInput>();
+
+  const handleCreateNewTransaction: SubmitHandler<IFormInput> = (data) => {
+    console.log({ ...data, type });
+  };
 
   return (
     <S.Modal
@@ -25,10 +38,10 @@ const NewTransactionsModal = ({
       <button type='button' className='react-modal-close-icon'>
         <img src={closeImg} alt='Close modal' onClick={onRequestClose} />
       </button>
-      <S.Container>
+      <S.Container onSubmit={handleSubmit(handleCreateNewTransaction)}>
         <h2>Register a transaction</h2>
-        <input placeholder='Name' />
-        <input placeholder='Value' type='number' />
+        <input {...register('name')} placeholder='Name' />
+        <input {...register('value')} placeholder='Value' type='number' />
         <S.TransactionTypeContainer>
           <S.ButtonType
             activeColor='green'
@@ -49,7 +62,7 @@ const NewTransactionsModal = ({
             <span>Withdraw</span>
           </S.ButtonType>
         </S.TransactionTypeContainer>
-        <input placeholder='category' />
+        <input {...register('category')} placeholder='category' />
         <button type='submit'>Register</button>
       </S.Container>
     </S.Modal>
