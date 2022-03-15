@@ -1,10 +1,10 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import * as S from './styles';
 import closeImg from 'assets/close.svg';
 import incomeImg from 'assets/income.svg';
 import outcomeImg from 'assets/outcome.svg';
-import { TransactionsContext } from 'context/TransactionsContext';
+import { useTransaction } from 'hooks/useTransaction';
 
 interface INewTransactionsModalProps {
   isOpen: boolean;
@@ -22,7 +22,7 @@ const NewTransactionsModal = ({
   isOpen,
 }: INewTransactionsModalProps) => {
   const [type, setType] = useState('deposit');
-  const { createTransaction } = useContext(TransactionsContext);
+  const { createTransaction } = useTransaction();
   const { register, handleSubmit, reset } = useForm<IFormInput>();
 
   const handleCreateNewTransaction: SubmitHandler<IFormInput> = async (
