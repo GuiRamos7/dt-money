@@ -6,9 +6,9 @@
 # Index
 
 - [About](#-About)
-- [Technoligies used](#-Technoligies-used)
-- [Overview of the project](#-Overview-of-the-project)
-- [Access to the project](#-Access-to-the-project)
+- [Technoligies used](#Technoligies-used)
+- [Overview of the project](#Overview-of-the-project)
+- [Access to the project](#Access-to-the-project)
 
 
 ## 📔 About
