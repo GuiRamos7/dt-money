@@ -6,7 +6,7 @@ import * as S from './styles';
 import { TransactionsContext } from 'context/TransactionsContext';
 
 const Summary = () => {
-  const transactions = useContext(TransactionsContext);
+  const { transactions } = useContext(TransactionsContext);
 
   return (
     <S.Container>
