@@ -8,6 +8,24 @@ import { TransactionsContext } from 'context/TransactionsContext';
 const Summary = () => {
   const { transactions } = useContext(TransactionsContext);
 
+  const summary = transactions.reduce(
+    (acc, transaction) => {
+      if (transaction.type === 'deposit') {
+        acc.deposits += transaction.amount;
+        acc.total += transaction.amount;
+      } else {
+        acc.withdraws -= transaction.amount;
+        acc.total -= transaction.amount;
+      }
+      return acc;
+    },
+    {
+      deposits: 0,
+      withdraws: 0,
+      total: 0,
+    }
+  );
+
   return (
     <S.Container>
       <S.SummaryItem>
@@ -15,21 +33,21 @@ const Summary = () => {
           <p>Received</p>
           <img src={incomeImg} alt='Income icon' />
         </header>
-        <strong>R$1000.00</strong>
+        <strong>{summary.deposits}</strong>
       </S.SummaryItem>
       <S.SummaryItem>
         <header>
-          <p>Received</p>
+          <p>Withdraws</p>
           <img src={outcomeImg} alt='Outcome icon' />
         </header>
-        <strong>- R$500.00</strong>
+        <strong>{summary.withdraws}</strong>
       </S.SummaryItem>
       <S.SummaryItem highlightBackground>
         <header>
-          <p>Received</p>
+          <p>Total</p>
           <img src={totalImg} alt='Total icon' />
         </header>
-        <strong>R$500.00</strong>
+        <strong>{summary.total}</strong>
       </S.SummaryItem>
     </S.Container>
   );
