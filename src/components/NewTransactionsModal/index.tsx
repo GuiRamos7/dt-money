@@ -23,12 +23,15 @@ const NewTransactionsModal = ({
 }: INewTransactionsModalProps) => {
   const [type, setType] = useState('deposit');
   const { createTransaction } = useContext(TransactionsContext);
+  const { register, handleSubmit, reset } = useForm<IFormInput>();
 
-  const { register, handleSubmit } = useForm<IFormInput>();
-
-  const handleCreateNewTransaction: SubmitHandler<IFormInput> = (data) => {
-    createTransaction({ ...data, type });
-    onRequestClose();
+  const handleCreateNewTransaction: SubmitHandler<IFormInput> = async (
+    data
+  ) => {
+    await createTransaction({ ...data, type }).then(() => {
+      onRequestClose();
+      reset();
+    });
   };
 
   return (
