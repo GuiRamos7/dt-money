@@ -4,6 +4,7 @@ import totalImg from 'assets/total.svg';
 import outcomeImg from 'assets/outcome.svg';
 import * as S from './styles';
 import { TransactionsContext } from 'context/TransactionsContext';
+import { formatMoney } from 'utils';
 
 const Summary = () => {
   const { transactions } = useContext(TransactionsContext);
@@ -33,21 +34,21 @@ const Summary = () => {
           <p>Received</p>
           <img src={incomeImg} alt='Income icon' />
         </header>
-        <strong>{summary.deposits}</strong>
+        <strong>{formatMoney(summary.deposits)}</strong>
       </S.SummaryItem>
       <S.SummaryItem>
         <header>
           <p>Withdraws</p>
           <img src={outcomeImg} alt='Outcome icon' />
         </header>
-        <strong>{summary.withdraws}</strong>
+        <strong>{formatMoney(summary.withdraws)}</strong>
       </S.SummaryItem>
       <S.SummaryItem highlightBackground>
         <header>
           <p>Total</p>
           <img src={totalImg} alt='Total icon' />
         </header>
-        <strong>{summary.total}</strong>
+        <strong>{formatMoney(summary.total)}</strong>
       </S.SummaryItem>
     </S.Container>
   );
