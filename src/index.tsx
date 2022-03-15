@@ -6,6 +6,7 @@ import { createServer, Model } from 'miragejs';
 
 import App from './App';
 import { GlobalStyle } from './styles/global';
+import { TransactionsProvider } from './context/TransactionsContext';
 
 Modal.setAppElement('#root');
 
@@ -69,8 +70,10 @@ createServer({
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-    <GlobalStyle />
+    <TransactionsProvider>
+      <App />
+      <GlobalStyle />
+    </TransactionsProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
