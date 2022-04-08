@@ -15,7 +15,7 @@
 
 The object of the project is to create a fake platform to control your financials. The goal of the project is to list the transactions and create a new transactions
 
-## 🖥️  Technoligies used
+## 🖥️  Technologies used
 
 - ReactJS
 - TypeScript
